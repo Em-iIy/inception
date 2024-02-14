@@ -8,8 +8,7 @@
 # this is only for the mysqld standalone daemon
 [mysqld]
 
-# socket = /run/mysqld/mysqld.sock
-bind_address = *
+bind_address = 0.0.0.0
 port = 3306
 
 #
