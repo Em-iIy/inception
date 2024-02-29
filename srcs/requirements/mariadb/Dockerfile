@@ -1,6 +1,7 @@
 FROM debian:bullseye
 
-RUN apt-get update -y && apt-get install mariadb-server -y
+RUN apt-get update -y && \
+	apt-get install mariadb-server -y
 
 # Create mysql directories and give correct ownership
 RUN mkdir -p /var/run/mysqld
@@ -13,9 +14,6 @@ COPY tools/script.sh /script.sh
 
 # Initialise mariadb data directory
 RUN mysql_install_db --user=mysql --datadir=/var/lib/mysql
-
-# Expose port 3306 to the docker network
-EXPOSE 3306
 
 # Run script
 ENTRYPOINT ["./script.sh"]

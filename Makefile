@@ -7,7 +7,7 @@ all: up
 .PHONY: all
 
 up: $(VOL_WORDPRESS) $(VOL_MARIADB)
-	docker compose -f $(DOCKER_COMPOSE_FILE) up
+	docker compose -f $(DOCKER_COMPOSE_FILE) up -d
 .PHONY: up
 
 down:

@@ -11,7 +11,9 @@ services:
       - "443:443"
     depends_on:
     - wordpress
-    build: ./requirements/nginx/
+    build:
+      context: ./requirements/nginx/
+      dockerfile: Dockerfile
     image: nginx:1.0
     env_file: .env
     restart: on-failure
@@ -23,8 +25,10 @@ services:
     networks:
     - inception
     expose:
-    - :3306
-    build: ./requirements/mariadb/
+    - 3306
+    build:
+      context: ./requirements/mariadb/
+      dockerfile: Dockerfile
     image: mariadb:1.0
     env_file: .env
     restart: on-failure
@@ -36,10 +40,12 @@ services:
     networks:
     - inception
     expose:
-    - :9000
+    - 9000
     depends_on:
     - mariadb
-    build: ./requirements/wordpress/
+    build:
+      context: ./requirements/wordpress/
+      dockerfile: Dockerfile
     image: wordpress:1.0
     env_file: .env
     restart: on-failure
@@ -62,4 +68,3 @@ volumes:
 networks:
   inception:
     name: inception
-    # driver: bridge

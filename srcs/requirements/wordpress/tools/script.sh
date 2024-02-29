@@ -3,9 +3,9 @@
 # Wait for database to finish configuration
 sleep 5
 
-cd '/var/www/wordpress'
 
 if [ ! -f "/var/www/wordpress/wp-config.php" ]; then
+	cd '/var/www/wordpress'
 
 	echo "create config"
 	wp config create --allow-root \
@@ -16,7 +16,6 @@ if [ ! -f "/var/www/wordpress/wp-config.php" ]; then
 
 	echo "core install"
 	wp core install --allow-root \
-					--path=/var/www/wordpress \
 					--skip-email \
 					--title="inception" \
 					--admin_name=$WP_ADMIN \
